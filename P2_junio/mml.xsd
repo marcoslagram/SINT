@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="Movies">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Anio" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="Pais" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Anio">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:gYear">
+				<xsd:minInclusive value="1900" />
+				<xsd:maxInclusive value="2017" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+	<xsd:element name="Pais">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Pelicula" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="pais" use="required">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+
+			<xsd:attribute name="lang" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[a-zA-Z][a-zA-Z]{1}" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Pelicula">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Titulo" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="Generos" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="Duracion" minOccurs="1" maxOccurs="1" />
+				<xsd:element ref="Reparto" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+
+			<xsd:attribute name="langs" use="optional">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+						<xsd:pattern value="[a-zA-Z][a-zA-Z]{1}([ ][a-zA-Z][a-zA-Z])*"></xsd:pattern>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="ip">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[A-Za-z]{3}[0-9]{3}">
+						</xsd:pattern>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Duracion">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:int">
+				<xsd:minInclusive value="0"></xsd:minInclusive>
+				<xsd:maxInclusive value="300"></xsd:maxInclusive>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+	<xsd:element name="Reparto" >
+		<xsd:complexType  mixed="true">
+			<xsd:sequence>
+				<xsd:element ref="Nombre" />
+				<xsd:element ref="Personaje" />
+				<xsd:element ref="Oscar" minOccurs="0" maxOccurs="1" />
+				<xsd:element ref="OtraPelicula" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Titulo" type="xsd:string" />
+
+
+	<xsd:element name="Generos">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Genero" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="Genero">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="Comedia" />
+				<xsd:enumeration value="Drama" />
+				<xsd:enumeration value="Guerra" />
+				<xsd:enumeration value="Aventuras" />
+				<xsd:enumeration value="Animacion" />
+				<xsd:enumeration value="Oeste" />
+				<xsd:enumeration value="Romantica" />
+				<xsd:enumeration value="Historica" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+
+
+
+	<xsd:element name="Oscar">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="Principal"></xsd:enumeration>
+				<xsd:enumeration value="Secundario"></xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+
+
+
+	<xsd:element name="Nombre" type="xsd:string" />
+
+	<xsd:element name="Personaje" type="xsd:string"></xsd:element>
+
+	<xsd:element name="OtraPelicula">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element ref="Titulo" minOccurs="1" maxOccurs="1" />
+					<xsd:element ref="ip" minOccurs="1" maxOccurs="1" />
+				</xsd:choice>
+				<xsd:element ref="MML" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="anio">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger">
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="ip">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:ID">
+				<xsd:pattern value="[A-Z a-z]{3}[0-9]{3}" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+	<xsd:element name="MML" type="xsd:anyURI" />
+
+
+</xsd:schema>

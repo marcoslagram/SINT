@@ -1,0 +1,9 @@
+h1{font-size: 36px; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif }
+h2{font-size: 28px; color:white; font-family: Verdana, Geneva, Tahoma, sans-serif }
+fieldset{background: #d0b9db; size: 256; font-family: Verdana, Geneva, Tahoma, sans-serif; border-radius: 5px}
+h5{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color:white}
+input{font-family: Verdana, Geneva, Tahoma, sans-serif; background-color: #d0b9db; border-radius: 5px; margin: 10px 5px;}
+text{font-family: Verdana, Geneva, Tahoma, sans-serif}
+body{background-color: #63186b}
+a{color: #d0b9db}
+p{color: #d0b9db}
