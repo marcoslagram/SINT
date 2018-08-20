@@ -1,0 +1,11 @@
+Marcos Lago Ramilo - 39490010E
+sint61
+
+==============================================
+Los archivos se colocan en html_public/p1
+Los datos se comprueban nada más terminar de escribirlos cuando se sale del cuadro de texto (onBlur), si se meten espacios en blanco estos no se consideran a efectos de comprobación de los datos, también se comprueban por segunda vez al intentar enviar el formulario si no se han corregido los errores. Esto impide que se envíen datos erróneos al formulario pero también perder tiempo corrigiéndolos todos al final.
+Los datos tienen su correspondiente escritura correcta explicada debajo de cada cuadro y en el alert que seale si un dato está mal metido.
+En cuanto a las casillas de selección saldrá on en el formulario si está seleccionado o nada en el caso contrario, ya hay un cuadro preseleccionado para comprobar esto nada más pulsar el Aceptar el formulario.
+Se puede comprobar que se deshabilita automáticamente el envío multipart si se selecciona el método GET.
+El campo de contraseñas se borra en caso de que las contraseñas no coincidan
+Se puede enviar el formulario sin necesidad de meter ningún dato con los valores por defecto.

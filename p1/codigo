@@ -1,0 +1,2 @@
+
+$destinatio = "Users/usuario/" . $fichero; //el directorio debe tener permiso

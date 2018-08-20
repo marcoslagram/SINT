@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Marcos Lago Ramilo"/>
+        <meta name="description" content="Practica 1 de SINT"/>
+        <meta name="language" content="es"/>
+
+        <title> Práctica 1 SINT - Marcos Lago Ramilo </title>
+        <script type="text/javascript" src="p1.js"></script>
+        <link href="p1.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+            <p style="text-align: center; "><IMG class="caratula" src="cine_gif.gif" alt="Caratula"></p>
+             <H1> Bienvenido a PELISFILMES </H1>
+                <H2> Zona de registro </H2>
+                <!-- <form name="rellenar" action="#" onsubmit="return enviarFormulario()"> -->
+                    <form onSubmit="return enviarFormulario()" id="formulario" method="POST">
+                        <fieldset>
+                        <legend>Datos personales</legend>
+                        <h3 id="nombre"><input type="text" size="15" maxlength="30" value="" name="nombre" placeholder="Nombre" onblur="checktexto(nombre)"></h3>
+                        <h3 id="apellidos"><input type="text" size="15"  value="" name="apellidos" placeholder="Apellidos" onblur="checktexto(apellidos)"></h3>
+                        <h6><i>El nombre y los apellidos no pueden contener n&uacute;meros. </i></h6>
+                        <h3 id="dni"><input type="text" size="9" value="" name="dni" placeholder="DNI" onblur="checkdni(dni)"></h3>
+                        <h6><i>El dni tiene que tener 8 n&uacute;meros y una letra may&uacute;scula.</i></h6>
+                        <!-- <h3 id="telf"><input type="text" size="9" value="" name="telf" pattern=[0-9]{9} placeholder="Telf." onblur="checktelf(telf)"></h3> -->
+                        <h3 id="telf"><input type="text" size="9" value="" name="telf" placeholder="Telf." onblur="checktelf(telf)"></h3>
+                        <h6><i>El tel&eacute;fono tiene que tener 9 cifras num&eacute;ricas.</i></h6>
+                        <h3 id="fecha"><input type="text" size="15" maxlength="30" value="" name="fechaIntroducida" placeholder="Fecha de nacimiento" onblur="validarFecha(fechaIntroducida)"></h3>
+                        <h6><i>La fecha tiene que ser del tipo 27/06/1997 </i></h6>
+                        <h3 id="email"><input type="email" size="15" value="" name="email" placeholder="Correo Electr&oacute;nico" onblur="checkmail(email)"></h3>
+                        <h6><i>El email tiene que tener una @ y tener un punto "." .</i></h6>
+
+                        <h3>Contraseña: <input type="password" name=pass1 id="pass1"></h3>
+                           <h3>Repita la contraseña: <input type="password" name="pass2" id="pass2" onblur="checkpass()"></h3>
+                            <h6><i>Las contraseñas deben coincidir.</i></h6>
+
+                        <h3>Seleccione su g&eacute;nero </h3>
+                        <h6 id="hombre"><input name="gender" type="radio" value="Hombre" />Hombre</h6>
+
+                        <h6 id="mujer"><input name="gender" type="radio" value="Mujer" />Mujer</h6>
+
+                        <h3>Puede subir una foto de perfil: </h3>
+                        <h6><input type="file" name="archivo"></h6>
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                                <legend>Personaliza el registro</legend>
+                        <h3>Escoga sus g&eacute;neros favoritos</h3>
+
+                        <h6><input name="genero[]" onclick="checkall(this)" type="checkbox" value="" />Seleccionar/Deseleccionar todo</h6>
+                        <h6 id="novedades"><input name="cbinovedades" type="checkbox" checked="checked" />Novedades</h6>
+                        <h6 id="animacion"><input name="cbianimacion" type="checkbox" />Animaci&oacute;n</h6>
+                        <h6 id="comedia"><input name="cbicomedia" type="checkbox" />Comedia</h6>
+                        <h6 id="accion"><input name="cbiaccion" type="checkbox" />Acci&oacute;n</h6>
+                        <h6 id="terror"><input name="cbiterror" type="checkbox" />Terror</h6>
+                        <h6 id="drama"><input name="cbidrama" type="checkbox" />Drama</h6>
+                        <h6 id="cine_autor"><input name="cbiautor" type="checkbox" />Cine de autor</h6>
+                        <h6 id="suspense"><input name="cbisuspense" type="checkbox" />Suspense</h6>
+                        <h6 id="biografia"><input name="cbibio" type="checkbox" />Biograf&iacute;as</h6>
+
+                        <h6 id="frecuencia">Elija la frecuencia con la que quiere que le env&iacute;en novedeades por correo:
+                            <select name="frecuencia">
+                              <option>Diariamente</option>
+                              <option>Semanalmente</option>
+                              <option>Mensualmente</option>
+                              <option>Nunca</option>
+                            </select>
+                        </h6>
+                        <br><p id="comentario"><textarea name="comentario" rows="5" cols="50" placeholder="Escribe aquí alg&uacute;n comentario: "></textarea></p>
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                                <legend>Aspectos t&eacute;cnicos de env&iacute;o del formiulario:</legend>
+                        <h3>Antes de enviar compruebe, puede pulsar el bot&oacute;n para borrar los datos introducidos</h3>
+                        <input type="reset" value="borrar todo">
+                        <h3>Antes de enviar, seleccione el m&eacute;todo de env&iacute;o:</h3>
+
+                        <h6 id="sendget"><input name="metodo" type="radio" value="GET" onclick="metodoGET()"/>GET</h6>
+                        <h6 id="sendpost"><input name="metodo" type="radio" value="POST" checked onclick="metodoPOST()"/>POST</h6>
+                        <br>
+                        <h3>Por favor, selecciona la codificación de envío:</h3>
+                        <h6><input type="radio" name="codif" id="urlencoded" value="application/x-www-form-urlencoded" checked onclick="">application/x-www-form-urlencoded</h6>
+                        <h6><input type="radio" name="codif" id="multipart" value="multipart/form-data">multipart/form-data</h6>
+
+                    <h6><i>La codificación 'multipart/form-data' sólo estará disponible si utiliza el método de envío 'POST'.</i></h6>
+
+                    <h3>Por favor, selecciona la URL a la que se enviará el formulario:</h3>
+                        <h6><input type="radio" name="PHP" id = "sintprof" value="http://193.146.210.123/phpinfo.php">http://193.146.210.123/phpinfo.php</h6>
+                        <h6><input type="radio" name="PHP" id = "myphp" value="p1.php" checked>p1.php</h6>
+                        <input type="hidden" id="horaEnvio" name="horaEnvio">
+                        <input type="hidden" id="navegador" name="navegador">
+                        <h6 id = "eula"><input type="checkbox" name="eula"> Acepto pero no he le&iacute;do los t&eacute;rminos y condiciones de la web.</h6>
+                        <p><h6>Si todo est&aacute; bien pulse Aceptar</h6>
+                        <input type="submit" value="Aceptar">
+
+
+                    </fieldset>
+                    <!-- <input type="hidden" id="horaEnvio" name="horaEnvio">
+                    <input type="hidden" id="navegador" name="navegador"> -->
+                    </form>
+                    <h6>Pr&aacute;ctica de SINT 1 - Marcos Lago Ramilo</h6>
+    </body>
+</html>
